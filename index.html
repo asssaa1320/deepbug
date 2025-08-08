@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepBug - أمان رقمي متقدم</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%233b82f6'/><stop offset='100%' style='stop-color:%231d4ed8'/></linearGradient></defs><circle cx='50' cy='50' r='45' fill='url(%23grad)'/><path d='M30 40 L50 25 L70 40 L70 65 L50 75 L30 65 Z' fill='white' opacity='0.9'/><circle cx='50' cy='50' r='8' fill='%233b82f6'/></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Meta tags for SEO and social sharing -->
+    <meta name="description" content="DeepBug - منصة متخصصة في الأمان الرقمي والبرمجة والمشاريع التقنية المتقدمة">
+    <meta name="keywords" content="أمان رقمي, برمجة, مشاريع تقنية, أخبار تقنية, DeepBug">
+    <meta name="author" content="DeepBug Team">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://deepbug.com/">
+    <meta property="og:title" content="DeepBug - أمان رقمي متقدم">
+    <meta property="og:description" content="منصة متخصصة في الأمان الرقمي والبرمجة والمشاريع التقنية المتقدمة">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://deepbug.com/">
+    <meta property="twitter:title" content="DeepBug - أمان رقمي متقدم">
+    <meta property="twitter:description" content="منصة متخصصة في الأمان رقمي والبرمجة والمشاريع التقنية المتقدمة">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="./src/styles.css" as="style">
+    <link rel="preload" href="./src/index.js" as="script">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">جاري التحميل...</div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar container">
+            <div class="nav-brand">
+                <h1 class="brand-title">
+                    <span class="brand-icon">🛡️</span>
+                    DeepBug
+                </h1>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#home" class="nav-link active" data-section="home">الرئيسية</a>
+                <a href="#articles" class="nav-link" data-section="articles">المقالات</a>
+                <a href="#projects" class="nav-link" data-section="projects">المشاريع</a>
+                <a href="#chat" class="nav-link" data-section="chat">الدردشة</a>
+                <a href="#about" class="nav-link" data-section="about">حولنا</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="theme-btn" id="theme-toggle" title="تبديل الوضع المظلم">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button class="auth-btn" id="auth-btn">تسجيل الدخول</button>
+                
+                <!-- User Menu (hidden by default) -->
+                <div class="user-menu hidden" id="user-menu">
+                    <div class="user-info">
+                        <img class="user-avatar" id="user-avatar" alt="صورة المستخدم">
+                        <span class="user-name" id="user-name"></span>
+                    </div>
+                    <div class="user-dropdown">
+                        <button class="dropdown-item" id="profile-btn">الملف الشخصي</button>
+                        <button class="dropdown-item" id="admin-btn" class="hidden">لوحة الإدارة</button>
+                        <button class="dropdown-item" id="logout-btn">تسجيل الخروج</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero section">
+            <div class="hero-content container">
+                <h1 class="hero-title animate-fadeInUp">مرحباً بك في DeepBug</h1>
+                <p class="hero-subtitle animate-fadeInUp animate-delay-200">
+                    منصتك المتخصصة في الأمان الرقمي والبرمجة والمشاريع التقنية المتقدمة
+                </p>
+                <div class="hero-actions animate-fadeInUp animate-delay-400">
+                    <a href="#articles" class="btn btn-primary hover-lift">استكشف المقالات</a>
+                    <a href="#projects" class="btn btn-secondary hover-lift">شاهد المشاريع</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Articles Section -->
+        <section id="articles" class="section animate-on-scroll">
+            <div class="container">
+                <h2 class="section-title">المقالات</h2>
+                
+                <!-- Category Filters -->
+                <div class="category-filters">
+                    <button class="filter-btn active" data-category="all">الكل</button>
+                    <button class="filter-btn" data-category="programming">البرمجة</button>
+                    <button class="filter-btn" data-category="cybersecurity">الأمان الرقمي</button>
+                    <button class="filter-btn" data-category="news">الأخبار</button>
+                    <button class="filter-btn" data-category="projects">المشاريع</button>
+                </div>
+                
+                <!-- Articles Grid -->
+                <div class="articles-grid" id="articles-grid">
+                    <!-- Articles will be loaded dynamically -->
+                    <div class="loading-skeleton article-card">
+                        <div class="skeleton-image"></div>
+                        <div class="skeleton-content">
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line short"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Load More Button -->
+                <div class="load-more-container">
+                    <button class="btn btn-outline" id="load-more-articles">تحميل المزيد</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section animate-on-scroll">
+            <div class="container">
+                <h2 class="section-title">المشاريع</h2>
+                
+                <!-- Projects Grid -->
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Projects will be loaded dynamically -->
+                    <div class="loading-skeleton project-card">
+                        <div class="skeleton-image"></div>
+                        <div class="skeleton-content">
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line short"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chat Section -->
+        <section id="chat" class="section animate-on-scroll">
+            <div class="container">
+                <h2 class="section-title">الدردشة</h2>
+                
+                <div class="chat-container" id="chat-container">
+                    <!-- Chat Status -->
+                    <div class="chat-status" id="chat-status">
+                        <span class="status-indicator"></span>
+                        <span class="status-text">الدردشة متاحة</span>
+                    </div>
+                    
+                    <!-- Chat Messages -->
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="welcome-message">
+                            <p>مرحباً بك في دردشة DeepBug! 💬</p>
+                            <p>يرجى تسجيل الدخول للمشاركة في المحادثة.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Chat Input -->
+                    <div class="chat-input-container" id="chat-input-container">
+                        <input 
+                            type="text" 
+                            id="chat-input" 
+                            class="chat-input" 
+                            placeholder="اكتب رسالتك هنا..."
+                            maxlength="500"
+                            disabled
+                        >
+                        <button class="btn btn-primary send-btn" id="send-btn" disabled>
+                            <span>إرسال</span>
+                            <span class="send-icon">📤</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section animate-on-scroll">
+            <div class="container">
+                <h2 class="section-title">حولنا</h2>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>مهمتنا</h3>
+                        <p>
+                            DeepBug هي منصة متخصصة في مجال الأمان الرقمي والبرمجة، نهدف إلى توفير محتوى تقني عالي الجودة
+                            ومشاريع مبتكرة تساعد المطورين والمهتمين بالتقنية على تطوير مهاراتهم ومعرفتهم.
+                        </p>
+                        <p>
+                            نؤمن بأن الأمان الرقمي حق للجميع، ونسعى لنشر الوعي والمعرفة في هذا المجال الحيوي
+                            من خلال مقالات متخصصة ومشاريع عملية وأدوات مفيدة.
+                        </p>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div class="social-links">
+                        <h4>تابعنا على</h4>
+                        <div class="social-buttons">
+                            <a href="#" class="social-btn facebook hover-glow" id="facebook-link">
+                                <span class="social-icon">📘</span>
+                                <span>Facebook</span>
+                            </a>
+                            <a href="#" class="social-btn youtube hover-glow" id="youtube-link">
+                                <span class="social-icon">📺</span>
+                                <span>YouTube</span>
+                            </a>
+                            <a href="#" class="social-btn telegram hover-glow" id="telegram-link">
+                                <span class="social-icon">📱</span>
+                                <span>Telegram</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>DeepBug</h3>
+                    <p>أمان رقمي متقدم</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>الأقسام</h4>
+                        <ul>
+                            <li><a href="#articles">المقالات</a></li>
+                            <li><a href="#projects">المشاريع</a></li>
+                            <li><a href="#chat">الدردشة</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>المساعدة</h4>
+                        <ul>
+                            <li><a href="#about">حولنا</a></li>
+                            <li><a href="#contact">اتصل بنا</a></li>
+                            <li><a href="#privacy">سياسة الخصوصية</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 DeepBug. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Container -->
+    <div id="modal-container"></div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script type="module" src="./src/index.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

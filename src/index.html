@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepBug - منصة الأمن السيبراني والتكنولوجيا</title>
+    <meta name="description" content="هدفنا جعل محتوى الأمن السيبراني في التكنولوجيا الأفضل">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <i class="fas fa-shield-alt logo-icon"></i>
+                        <span class="logo-text">DeepBug</span>
+                    </div>
+                    <div class="nav-menu">
+                        <a href="#home" class="nav-link active">الرئيسية</a>
+                        <a href="#articles" class="nav-link">المقالات</a>
+                        <a href="#projects" class="nav-link">المشاريع</a>
+                        <a href="#chat" class="nav-link">الدردشة</a>
+                        <a href="#about" class="nav-link">حول الموقع</a>
+                    </div>
+                    <div class="nav-actions">
+                        <button id="theme-toggle" class="theme-btn" title="تبديل الوضع">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button id="auth-btn" class="auth-btn">تسجيل الدخول</button>
+                        <div id="user-menu" class="user-menu hidden">
+                            <span id="user-name"></span>
+                            <button id="logout-btn" class="logout-btn">تسجيل الخروج</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="section home-section">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1 class="hero-title">مرحباً بك في DeepBug</h1>
+                        <p class="hero-subtitle">هدفنا جعل محتوى الأمن السيبراني في التكنولوجيا الأفضل</p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary" onclick="scrollToSection('articles')">استكشف المقالات</button>
+                            <button class="btn btn-secondary" onclick="scrollToSection('projects')">تصفح المشاريع</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Articles Section -->
+            <section id="articles" class="section articles-section">
+                <div class="container">
+                    <h2 class="section-title">المقالات</h2>
+                    <div class="articles-filter">
+                        <button class="filter-btn active" data-category="all">الكل</button>
+                        <button class="filter-btn" data-category="programming">البرمجة</button>
+                        <button class="filter-btn" data-category="cybersecurity">الأمن السيبراني</button>
+                        <button class="filter-btn" data-category="news">الأخبار</button>
+                    </div>
+                    <div id="articles-grid" class="articles-grid">
+                        <!-- Articles will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section projects-section">
+                <div class="container">
+                    <h2 class="section-title">المشاريع</h2>
+                    <div id="projects-grid" class="projects-grid">
+                        <!-- Projects will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chat Section -->
+            <section id="chat" class="section chat-section">
+                <div class="container">
+                    <h2 class="section-title">الدردشة</h2>
+                    <div id="chat-container" class="chat-container">
+                        <div id="chat-messages" class="chat-messages"></div>
+                        <div class="chat-input-container">
+                            <input type="text" id="chat-input" placeholder="اكتب رسالتك..." maxlength="500">
+                            <button id="send-btn" class="send-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="section about-section">
+                <div class="container">
+                    <h2 class="section-title">حول الموقع</h2>
+                    <div class="about-content">
+                        <h3>DeepBug</h3>
+                        <p>هدفنا جعل محتوى الأمن السيبراني في التكنولوجيا الأفضل</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link facebook" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link youtube" target="_blank">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-link telegram" target="_blank">
+                                <i class="fab fa-telegram-plane"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Auth Modal -->
+        <div id="auth-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <div class="auth-container">
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" data-tab="login">تسجيل الدخول</button>
+                        <button class="auth-tab" data-tab="register">إنشاء حساب</button>
+                    </div>
+                    
+                    <!-- Login Form -->
+                    <form id="login-form" class="auth-form">
+                        <h3>تسجيل الدخول</h3>
+                        <div class="form-group">
+                            <input type="email" id="login-email" placeholder="البريد الإلكتروني" required maxlength="100">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="login-password" placeholder="كلمة المرور" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">دخول</button>
+                        <button type="button" id="google-login" class="btn btn-google">
+                            <i class="fab fa-google"></i> الدخول بجوجل
+                        </button>
+                    </form>
+
+                    <!-- Register Form -->
+                    <form id="register-form" class="auth-form hidden">
+                        <h3>إنشاء حساب جديد</h3>
+                        <div class="form-group">
+                            <input type="text" id="register-name" placeholder="الاسم" required maxlength="50">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="register-email" placeholder="البريد الإلكتروني" required maxlength="100">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="register-password" placeholder="كلمة المرور" required minlength="6">
+                        </div>
+                        <button type="submit" class="btn btn-primary">إنشاء حساب</button>
+                        <button type="button" id="google-register" class="btn btn-google">
+                            <i class="fab fa-google"></i> التسجيل بجوجل
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Panel -->
+        <div id="admin-panel" class="admin-panel hidden">
+            <div class="admin-header">
+                <h2>لوحة التحكم</h2>
+                <button id="close-admin" class="close-admin-btn">×</button>
+            </div>
+            <div class="admin-content">
+                <div class="admin-tabs">
+                    <button class="admin-tab active" data-tab="articles">إدارة المقالات</button>
+                    <button class="admin-tab" data-tab="projects">إدارة المشاريع</button>
+                    <button class="admin-tab" data-tab="chat">إدارة الدردشة</button>
+                </div>
+                
+                <!-- Article Management -->
+                <div id="admin-articles" class="admin-section">
+                    <button id="new-article-btn" class="btn btn-primary">مقال جديد</button>
+                    <div id="admin-articles-list"></div>
+                </div>
+
+                <!-- Project Management -->
+                <div id="admin-projects" class="admin-section hidden">
+                    <button id="new-project-btn" class="btn btn-primary">مشروع جديد</button>
+                    <div id="admin-projects-list"></div>
+                </div>
+
+                <!-- Chat Management -->
+                <div id="admin-chat" class="admin-section hidden">
+                    <div class="chat-controls">
+                        <button id="clear-chat-btn" class="btn btn-warning">مسح الدردشة</button>
+                        <button id="toggle-chat-btn" class="btn btn-secondary">إغلاق الدردشة</button>
+                    </div>
+                    <div id="banned-users-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article Editor Modal -->
+        <div id="article-editor" class="modal hidden">
+            <div class="modal-content large">
+                <span class="close-btn">&times;</span>
+                <form id="article-form" class="editor-form">
+                    <h3 id="editor-title">مقال جديد</h3>
+                    <div class="form-group">
+                        <input type="text" id="article-title" placeholder="عنوان المقال" required maxlength="200">
+                    </div>
+                    <div class="form-group">
+                        <input type="url" id="article-image" placeholder="رابط صورة المقال (اختياري)" maxlength="500">
+                    </div>
+                    <div class="form-group">
+                        <select id="article-category" required>
+                            <option value="">اختر القسم</option>
+                            <option value="programming">البرمجة</option>
+                            <option value="cybersecurity">الأمن السيبراني</option>
+                            <option value="news">الأخبار</option>
+                        </select>
+                    </div>
+                    <div class="editor-toolbar">
+                        <button type="button" class="toolbar-btn" data-action="bold">
+                            <i class="fas fa-bold"></i>
+                        </button>
+                        <button type="button" class="toolbar-btn" data-action="italic">
+                            <i class="fas fa-italic"></i>
+                        </button>
+                        <button type="button" class="toolbar-btn" data-action="quote">
+                            <i class="fas fa-quote-right"></i>
+                        </button>
+                        <button type="button" class="toolbar-btn" data-action="code">
+                            <i class="fas fa-code"></i>
+                        </button>
+                        <button type="button" class="toolbar-btn" data-action="large">
+                            <i class="fas fa-text-height"></i>
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="article-content" placeholder="محتوى المقال..." required></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">حفظ</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('article-editor')">إلغاء</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Project Editor Modal -->
+        <div id="project-editor" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <form id="project-form" class="editor-form">
+                    <h3 id="project-editor-title">مشروع جديد</h3>
+                    <div class="form-group">
+                        <input type="text" id="project-name" placeholder="اسم المشروع" required maxlength="100">
+                    </div>
+                    <div class="form-group">
+                        <input type="url" id="project-link" placeholder="رابط المشروع" required maxlength="500">
+                    </div>
+                    <div class="form-group">
+                        <input type="url" id="project-image" placeholder="رابط صورة المشروع" maxlength="500">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="project-description" placeholder="وصف المشروع..." required maxlength="1000"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">حفظ</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('project-editor')">إلغاء</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container" class="toast-container"></div>
+    </div>
+</body>
+</html>
